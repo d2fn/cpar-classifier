@@ -2,7 +2,12 @@ CPAR Classifier
 ===
 Dietrich Featherston, `fthrstn2@illinois.edu`, `d@d2fn.com`
 
-This module contains an implementation of a CPAR classifier based on the paper by Yin and Han [1].  The implementation is capable of testing classifier effectiveness against training and test data sets and predicting labels for unlabled data based on provided training data. 
+This module contains an implementation of a CPAR classifier based on the paper by Yin and Han [1].  The implementation is capable of testing classifier effectiveness against training and test data sets and predicting labels for unlabled data based on provided training data.
+
+The algorithm generates predictive association rules based on all unique class labels found in training data sets.  Rules are incrementally built up by selecting the next best predicate that leads to the greatest reduction in entropy of the training data with respect to the class label currently being mined.  CPAR also selects rules with similar gain so that important rules are not overlooked.  As rules are generated, the weight of all transactions matching the new rule have their weighting decayed by a percentage.  This allows new rules to be generated which address transactions not covered by existing rules (or covered by fewer rules).  This leads to a greater number of rules being generated which helps to improve classifier accuracy.  This works because when information gain is calculated it takes into account the weight of each transaction matching a given class label instead of treating them all equally.
+
+When choosing which label to predict for an example, we select the best _k_ rules for every available class label based on the _Laplace Accuracy_ of each.  The average accuracy of the rules for each label is computed and the label for the set with the highest value is given as the predicted label.
+
 
 Building
 ---
