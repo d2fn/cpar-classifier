@@ -1,0 +1,4 @@
+#!/bin/csh
+
+java -cp bin Main predict $argv
+

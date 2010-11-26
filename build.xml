@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="cpar-classifier" default="all" basedir=".">
+
+    <property name="compiler.debug" value="on"/>
+
+    <target name="compile">
+        <mkdir dir="bin"/>
+        <javac srcdir="src" destdir="bin" debug="${compiler.debug}" fork="true" source="1.6"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+
+    <target name="all" depends="clean,compile" description="build all"/>
+</project>
