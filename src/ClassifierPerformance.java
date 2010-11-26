@@ -3,7 +3,7 @@
  */
 public class ClassifierPerformance {
 
-    public int tp,tn,fp,fn = 0;
+    public int tp,tn,fp,fn,u = 0;
     public int p,n = 0;
 
     public void tp() {
@@ -20,6 +20,10 @@ public class ClassifierPerformance {
 
     public void fn() {
         fn++;
+    }
+
+    public void u() {
+        u++;
     }
 
     public void p() {
@@ -40,6 +44,7 @@ public class ClassifierPerformance {
           .append(",TN=").append(tn)
           .append(",FP=").append(fp)
           .append(",FN=").append(fn)
+          .append(",U=").append(u)
           .append("]");
         return sb.toString();
     }

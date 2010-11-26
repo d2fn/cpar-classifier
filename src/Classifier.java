@@ -180,37 +180,37 @@ public class Classifier {
 
         ClassifierPerformance perf = new ClassifierPerformance();
 
-        int unk = 0;
-
         for (Transaction t : testSet) {
+
+            if(t.getLabel().equals("1")) {
+                perf.p();
+            }
+            else {
+                perf.n();
+            }
 
             String guess = guessLabel(t);
 
             if(guess.equals("unk")) {
-                unk++;
+                perf.u();
+                continue;
             }
 
             if (t.getLabel().equals(guess)) {
                 if (guess.equals("1")) {
                     perf.tp();
-                    perf.p();
                 } else if(guess.equals("0")) {
                     perf.tn();
-                    perf.n();
                 }
 
             } else {
                 if (guess.equals("1")) {
                     perf.fp();
-                    perf.n();
                 } else if(guess.equals("0")) {
                     perf.fn();
-                    perf.p();
                 }
             }
         }
-
-        System.out.println("Unknown: "+unk);
 
         return perf;
     }
